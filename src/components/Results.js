@@ -2,7 +2,6 @@ import React from 'react';
 import Photo from './Photo';
 import NoResults from './NoResults';
 
-
 const Results = (props) => {
 
   const results = props.data;
@@ -13,10 +12,10 @@ const Results = (props) => {
   } else {
     photos = <NoResults />;
   }
-
+  
   return (
     <div className="photo-container">
-      <h2>Results</h2>
+      <h2>{props.text}</h2>
       <ul>
         {photos}
       </ul>

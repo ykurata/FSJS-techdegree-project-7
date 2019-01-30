@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Header extends Component {
+class Form extends Component {
 
   state = {
     searchText: ''
@@ -22,6 +22,7 @@ class Header extends Component {
         <input  type="search"
                 onChange={this.onSearchChange}
                 name="search"
+                value={this.state.searchText}
                 ref={(input) => this.query = input}
                 placeholder="Search"
                 required />
@@ -36,4 +37,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Form;

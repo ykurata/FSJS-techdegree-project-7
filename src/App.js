@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Header from './components/Header';
+import Form from './components/Form';
 import Nav from './components/Nav';
 import Results from './components/Results';
 import apiKey from './config';
@@ -12,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       photos: [],
-      loading: true
+      loading: true,
+      searchText: ''
     };
   }
   componentDidMount() {
@@ -24,7 +25,8 @@ class App extends Component {
       .then(response => {
         this.setState({
           photos: response.data.photos.photo,
-          loading: false
+          loading: false,
+          searchText: query
         });
       })
       .catch(error => {
@@ -36,12 +38,12 @@ class App extends Component {
     console.log(this.state.photos);
     return (
       <div className="container">
-        <Header onSearch={this.performSearch} />
+        <Form onSearch={this.performSearch} />
         <Nav />
         {
           (this.state.loading)
           ? <p>Loading...</p>
-          : <Results data={this.state.photos}/>
+          : <Results data={this.state.photos} text={this.state.searchText}/>
         }
       </div>
     );

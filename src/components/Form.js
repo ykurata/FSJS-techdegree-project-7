@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Form extends Component {
 
@@ -14,6 +15,7 @@ class Form extends Component {
     e.preventDefault();
     this.props.onSearch(this.query.value);
     e.currentTarget.reset();
+    browserHistory.push(`'/search/${this.state.searchText}'`)
   }
 
   render() {

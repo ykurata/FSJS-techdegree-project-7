@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import  {
   BrowserRouter,
   Route,
@@ -50,38 +50,39 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
           <Form onSearch={this.performSearch} />
           <Nav />
             <Switch>
-              {
-                (this.state.loading)
-                ? <p>Loading...</p>
-                : <Route exact path="/" render={ () => <Results data={this.state.photos} text={this.state.searchText}/>} />
-              }
+              <Fragment>
+                {
+                  (this.state.loading)
+                  ? <p>Loading...</p>
+                  : <Route exact path="/" render={ () => <Results data={this.state.photos} text={this.state.searchText}/>} />
+                }
 
-              {
-                (this.state.loading)
-                ? <p>Loading...</p>
-                : <Route path="/cats" component={Cats} />
-              }
+                {
+                  (this.state.loading)
+                  ? <p>Loading...</p>
+                  : <Route path="/cats" component={Cats} />
+                }
 
-              {
-                (this.state.loading)
-                ? <p>Loading...</p>
-                : <Route path="/dogs" component={Dogs} />
-              }
+                {
+                  (this.state.loading)
+                  ? <p>Loading...</p>
+                  : <Route path="/dogs" component={Dogs} />
+                }
 
-              {
-                (this.state.loading)
-                ? <p>Loading...</p>
-                : <Route path="/horses" component={Horses} />
-              }
+                {
+                  (this.state.loading)
+                  ? <p>Loading...</p>
+                  : <Route path="/horses" component={Horses} />
+                }
 
-              <Route component={NotFound} />
+                <Route component={NotFound} />
+              </Fragment>
             </Switch>
         </div>
       </BrowserRouter>

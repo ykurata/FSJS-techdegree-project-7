@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 
 // app components
 import axios from 'axios';
-import Form from './Form';
-import Nav from './Nav';
 import Results from './Results';
-import NotFound from './NotFound';
 
 // flickr api key
 import apiKey from '../config';

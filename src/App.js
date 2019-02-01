@@ -15,7 +15,6 @@ import Cats from './components/Cats';
 import Dogs from './components/Dogs';
 import Flowers from './components/Flowers';
 
-
 // flickr api key
 import apiKey from './config';
 

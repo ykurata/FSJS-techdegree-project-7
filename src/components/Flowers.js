@@ -8,24 +8,24 @@ import Results from './Results';
 import apiKey from '../config';
 
 
-class Horses extends Component {
+class Flowers extends Component {
   constructor() {
     super();
     this.state = {
-      horsesPhotos: [],
+      flowersPhotos: [],
       loading: true,
       searchText: '',
     };
   }
   componentDidMount() {
-    this.performSearch();
+    this.performSearch("flowers");
   }
 
-  performSearch = (query = "horses") => {
+  performSearch = (query) => {
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(response => {
         this.setState({
-          horsesPhotos: response.data.photos.photo,
+          flowersPhotos: response.data.photos.photo,
           loading: false,
           searchText: query
         });
@@ -41,11 +41,11 @@ class Horses extends Component {
         {
           (this.state.loading)
           ? <p>Loading...</p>
-          : <Results data={this.state.horsesPhotos} text={this.state.searchText}/>
+          : <Results data={this.state.flowersPhotos} text={this.state.searchText}/>
         }
       </div>
     );
   }
 }
 
-export default Horses;
+export default Flowers;

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import  {
   BrowserRouter,
   Route,
@@ -13,7 +13,8 @@ import Results from './components/Results';
 import NotFound from './components/NotFound';
 import Cats from './components/Cats';
 import Dogs from './components/Dogs';
-import Horses from './components/Horses';
+import Flowers from './components/Flowers';
+
 
 // flickr api key
 import apiKey from './config';
@@ -25,17 +26,14 @@ class App extends Component {
     this.state = {
       photos: [],
       loading: true,
-      searchText: '',
-      catsPhotos: [],
-      dogsPhotos: [],
-      HorsesPhotos: []
+      searchText: ''
     };
   }
   componentDidMount() {
     this.performSearch();
   }
 
-  performSearch = (query = "sunsets") => {
+  performSearch = (query) => {
       axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
         .then(response => {
           this.setState({
@@ -50,39 +48,19 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
           <Form onSearch={this.performSearch} />
           <Nav />
             <Switch>
-              <Fragment>
-                {
-                  (this.state.loading)
-                  ? <p>Loading...</p>
-                  : <Route exact path="/" render={ () => <Results data={this.state.photos} text={this.state.searchText}/>} />
-                }
-
-                {
-                  (this.state.loading)
-                  ? <p>Loading...</p>
-                  : <Route path="/cats" component={Cats} />
-                }
-
-                {
-                  (this.state.loading)
-                  ? <p>Loading...</p>
-                  : <Route path="/dogs" component={Dogs} />
-                }
-
-                {
-                  (this.state.loading)
-                  ? <p>Loading...</p>
-                  : <Route path="/horses" component={Horses} />
-                }
-
-                <Route component={NotFound} />
-              </Fragment>
+              <Route exact path="/" component={Cats} />
+              <Route exact path={`/search/${this.state.searchText}`} render={ () => <Results data={this.state.photos} text={this.state.searchText}/>} />
+              <Route path="/cats" component={Cats} />
+              <Route path="/dogs" component={Dogs} />
+              <Route path="/flowers" component={Flowers} />
+              <Route component={NotFound} />
             </Switch>
         </div>
       </BrowserRouter>

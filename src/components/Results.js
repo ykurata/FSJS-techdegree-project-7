@@ -27,15 +27,6 @@ const Results = (props) => {
       </div>
     );
   }
-
-  // return (
-  //   <div className="photo-container">
-  //     <h2>{props.text}</h2>
-  //     <ul>
-  //       {photos}
-  //     </ul>
-  //   </div>
-  // );
 }
 
 export default Results;

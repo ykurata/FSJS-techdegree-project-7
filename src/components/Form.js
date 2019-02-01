@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
+
 class Form extends Component {
 
   state = {
     searchText: ''
   }
 
-  onSearchChange = (e) => {
+  onSearchChange = e => {
     this.setState({ searchText: e.target.value });
   }
 
@@ -15,7 +16,8 @@ class Form extends Component {
     e.preventDefault();
     this.props.onSearch(this.query.value);
     e.currentTarget.reset();
-    this.props.history.push('`/search/${this.state.searchText}`');
+    this.props.history.push(`/search/${this.state.searchText}`);
+    this.setState({ searchText: '' });
   }
 
   render() {
@@ -40,3 +42,4 @@ class Form extends Component {
 }
 
 export default withRouter(Form);
+//export default Form

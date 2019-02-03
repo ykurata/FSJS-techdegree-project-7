@@ -17,6 +17,8 @@ class Dogs extends Component {
       searchText: '',
     };
   }
+
+  // Search dogs photos
   componentDidMount() {
     this.performSearch("dogs");
   }

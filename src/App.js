@@ -10,7 +10,6 @@ import axios from 'axios';
 import Form from './components/Form';
 import Nav from './components/Nav';
 import Results from './components/Results';
-import NotFound from './components/NotFound';
 import Cats from './components/Cats';
 import Dogs from './components/Dogs';
 import Flowers from './components/Flowers';
@@ -32,7 +31,8 @@ class App extends Component {
     this.performSearch();
   }
 
-  performSearch = (query) => {
+  // Search photos from api
+  performSearch = (query = "cats") => {
       axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
         .then(response => {
           this.setState({
@@ -46,6 +46,7 @@ class App extends Component {
         });
   }
 
+  // render each components
   render() {
     console.log(this.state.photos);
     return (
@@ -55,11 +56,10 @@ class App extends Component {
           <Nav />
             <Switch>
               <Route exact path="/" component={Cats} />
-              <Route exact path={`/search/${this.state.searchText}`} render={ () => <Results data={this.state.photos} text={this.state.searchText}/>} />
+              <Route path={`/search/${this.state.searchText}`} render={ () => <Results data={this.state.photos} text={this.state.searchText} />} />
               <Route path="/cats" component={Cats} />
               <Route path="/dogs" component={Dogs} />
               <Route path="/flowers" component={Flowers} />
-              <Route component={NotFound} />
             </Switch>
         </div>
       </BrowserRouter>

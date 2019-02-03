@@ -17,6 +17,8 @@ class Cats extends Component {
       searchText: '',
     };
   }
+
+  // Search cats photos
   componentDidMount() {
     this.performSearch("cats");
   }
@@ -38,11 +40,13 @@ class Cats extends Component {
   render() {
     return (
       <div className="container">
+        {/* While loading, display Loading message */}
         {
           (this.state.loading)
           ? <p>Loading...</p>
           : <Results data={this.state.catsPhotos} text={this.state.searchText}/>
         }
+
       </div>
     );
   }

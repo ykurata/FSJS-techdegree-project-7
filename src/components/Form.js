@@ -8,10 +8,12 @@ class Form extends Component {
     searchText: ''
   }
 
+  // Get input value as searchText
   onSearchChange = e => {
     this.setState({ searchText: e.target.value });
   }
 
+  // Submit form
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSearch(this.query.value);
@@ -42,4 +44,3 @@ class Form extends Component {
 }
 
 export default withRouter(Form);
-//export default Form

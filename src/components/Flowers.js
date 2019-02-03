@@ -17,6 +17,8 @@ class Flowers extends Component {
       searchText: '',
     };
   }
+
+  // Search flowers photos
   componentDidMount() {
     this.performSearch("flowers");
   }
